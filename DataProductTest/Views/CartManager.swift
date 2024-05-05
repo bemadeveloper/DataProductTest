@@ -8,16 +8,16 @@
 import Foundation
 
 class CartManager: ObservableObject {
-    @Published private(set) var products: [Product] = []
-    @Published private(set) var total: Double = 0.0
+    @Published private(set) var products: [Good] = []
+    @Published private(set) var total: Float16 = 0.0
     
-    func addToCart(product: Product) {
-        products.append(product)
-        total += product.price
+    func addToCart(good: Good) {
+        products.append(good)
+        total += good.price
     }
     
-    func removeFromCart(product: Product) {
-        products = products.filter { $0.id != product.id }
-        total -= product.price
+    func removeFromCart(good: Good) {
+        products = products.filter { $0.id != good.id }
+        total -= good.price
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import UIKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -15,11 +16,18 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             let newItem = Product(context: viewContext)
-            newItem.name = ""
-            newItem.price = 0.0
-            newItem.descriptionn = ""
-            newItem.brand = ""
-            newItem.manufacturer = ""
+            newItem.id = UUID()
+            newItem.name = String()
+            newItem.price = Double()
+            newItem.descriptionn = String()
+            newItem.brand = String()
+            newItem.manufacturer = String()
+            
+            if let image = UIImage(named: "image1") {
+                if let imageData = image.pngData() {
+                    newItem.image = imageData
+                }
+            }
         }
         do {
             try viewContext.save()

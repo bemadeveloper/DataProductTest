@@ -50,9 +50,16 @@ struct AddProductView: View {
                             moc.refreshAllObjects()
                             dismiss()
                         }
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(.blue)
                     }
                 }
                 .navigationTitle("Add Product")
+                .navigationBarItems(trailing:
+                                        NavigationLink(destination: EditView()) {
+                    Image(systemName: "arrow.right.circle.fill")
+                }
+                )
             }
         }
     }

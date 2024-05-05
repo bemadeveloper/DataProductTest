@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CartView: View {
     @EnvironmentObject var cartManager: CartManager
+    
     var body: some View {
         ScrollView {
             if cartManager.products.count > 0 {
-                ForEach(cartManager.products, id: \.id) { product in
-                    ProductRow(product: product)
+                ForEach(cartManager.products, id: \.id) { good in
+                    ProductRow(good: good)
                 }
                 
                 HStack {

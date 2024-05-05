@@ -10,12 +10,7 @@ import CoreData
 
 struct ContentView: View {
     
-    var coreDataManager = CoreDataManager()
-    var cartManager = CartManager()
-    
-    init() {
-        coreDataManager.myProducts()
-    }
+    @StateObject var cartManager = CartManager()
     
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     
@@ -23,28 +18,27 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(coreDataManager.savedEntities, id: \.id) {
-                        product in
-                        ProductCard(product: product)
-                            .environmentObject(cartManager)
+                    ForEach(goodList, id: \.id) { good in
+                       ProductCard(good: good)
+                                .environmentObject(cartManager)
                     }
                 }
                 .padding()
             }
-            navigationTitle(Text("KGmart Shop"))
-                .toolbar {
-                    NavigationLink {
-                        CartView()
-                            .environmentObject(cartManager)
-                    } label: {
-                        CartButton(numberOfProducts: cartManager.products.count)
-                    }
+            .navigationTitle(Text("KGmart Shop"))
+            .toolbar {
+                NavigationLink {
+                    CartView()
+                        .environmentObject(cartManager)
+                } label: {
+                    CartButton(numberOfProducts: cartManager.products.count)
                 }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
