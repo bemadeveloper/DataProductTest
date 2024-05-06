@@ -51,32 +51,18 @@ struct PencilView: View {
                     Section {
                         Button("Save") {
                             for index in 0..<goodList.count {
-                                var updatedGood = goodList[index]
-                                updatedGood.name = name
-                                updatedGood.price = Float16(price)
-                                updatedGood.description = descriptionn
-                                updatedGood.brand = brand
-                                updatedGood.manufacturer = manufacturer
-                                goodList[index] = updatedGood
-                                
+                                goodList[index].name = name
+                                    goodList[index].price = Float16(price)
+                                    goodList[index].description = descriptionn
+                                    goodList[index].brand = brand
+                                    goodList[index].manufacturer = manufacturer
                             }
-//                            let newProduct = Product(context: moc)
-//                            newProduct.id = UUID()
-//                            newProduct.name = name
-//                            newProduct.price = Double(price) ?? 0.0
-//                            newProduct.descriptionn = descriptionn
-//                            newProduct.brand = brand
-//                            newProduct.manufacturer = manufacturer
-                            
-//                            try? moc.save()
-//                            moc.refreshAllObjects()
-//                            dismiss()
                         }
                         .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.blue)
                     }
                 }
-                .navigationTitle("Add Product")
+                .navigationTitle("Edit Product")
             }
         }
     }

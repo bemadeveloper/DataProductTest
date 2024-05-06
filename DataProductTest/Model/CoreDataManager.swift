@@ -20,7 +20,7 @@ final class CoreDataManager {
     init() {
         container = NSPersistentContainer(name: "Product")
         container.loadPersistentStores { description, error in
-            if let error {
+            if error == nil {
                 print("Невозможно загрузить базу данных")
             } else {
                 print("База данных загружена")
